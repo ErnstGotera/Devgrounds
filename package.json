@@ -1,8 +1,12 @@
 {
-  "name": "devgrounds",
+  "name": "devgrounds-server",
   "version": "1.0.0",
   "description": "Social network for developers",
   "main": "server.js",
+  "repository": {
+    "url": "https://github.com/ErnstGotera/Devgrounds.git",
+    "type": "git"
+  },
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
@@ -25,6 +29,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.6.1",
+    "nodemon": "^2.0.4",
     "prettier": "^1.19.1"
   }
 }
