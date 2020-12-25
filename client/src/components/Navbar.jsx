@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <FaCode className="icon" />
+          <FaCode className="navbar__icon" />
           DevGrounds
         </Link>
       </h1>
