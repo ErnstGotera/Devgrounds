@@ -163,6 +163,10 @@ img {
   background: var(--primary-color);
   color: #fff;
 }
+button:disabled {
+  background: #ccc;
+  color: #333;
+}
 
 .btn-light,
 .bg-light,

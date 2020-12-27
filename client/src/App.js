@@ -8,7 +8,7 @@ import './App.css';
 
 const App = () => (
   <Switch>
-    <Fragment className="App">
+    <Fragment>
       <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
