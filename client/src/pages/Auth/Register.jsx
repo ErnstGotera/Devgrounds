@@ -56,7 +56,7 @@ const Register = () => {
           }
         }}
       >
-        {({ values, errors, touched, isSubmitting }) => (
+        {({ values, isSubmitting }) => (
           <Form className="form">
             <pre>{JSON.stringify(values, null, 2)}</pre>;
             <div className="form-group">
@@ -65,7 +65,6 @@ const Register = () => {
             <div className="form-group">
               <Field type="email" placeholder="email" name="email" required />
             </div>
-            {errors.email && touched.email && errors.email}
             <div className="form-group">
               <Field
                 type="password"
@@ -75,7 +74,6 @@ const Register = () => {
                 required
               />
             </div>
-            {errors.password && touched.password && errors.password}
             <div className="form-group">
               <Field
                 type="password"
@@ -97,7 +95,7 @@ const Register = () => {
       </Formik>
 
       <p className="my-1">
-        Already have an account? <Link to="login">Sign In</Link>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </section>
   );
