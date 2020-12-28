@@ -1,13 +1,16 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
+import { setAlert } from '../../redux/alert/alert.actions';
+import PropTypes from 'prop-types';
 
 import './Register.scss';
 
-const Register = () => {
+const Register = props => {
   return (
-    <section className="container">
+    <>
       <h1 className="large text-primary">Sign Up</h1>
       <p className=" lead">
         <FaUser className="icon" /> Create Your Account
@@ -36,7 +39,7 @@ const Register = () => {
           };
           if (password !== confirm) {
             setSubmitting(true);
-            console.log('Passwords dont match');
+            props.setAlert('Passwords do not match', 'danger');
             setTimeout(() => {
               setSubmitting(false);
             }, 9100);
@@ -97,8 +100,10 @@ const Register = () => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </section>
+    </>
   );
 };
-
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
+export default connect(null, { setAlert })(Register);
