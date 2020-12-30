@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { setAlert } from '../../redux/alert/alert.actions';
+import { register } from '../../redux/user/user.actions';
 import PropTypes from 'prop-types';
 
 import './Register.scss';
 
-const Register = props => {
+const Register = ({ setAlert, register }) => {
   return (
     <>
       <h1 className="large text-primary">Sign Up</h1>
@@ -32,27 +33,17 @@ const Register = props => {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           const { name, email, password, confirm } = values;
-          const newUser = {
-            name,
-            email,
-            password
-          };
+
           if (password !== confirm) {
-            setSubmitting(true);
-            props.setAlert('Passwords do not match', 'danger');
-            setTimeout(() => {
-              setSubmitting(false);
-            }, 9100);
+            setAlert('Passwords do not match', 'danger');
           } else {
             try {
               setSubmitting(true);
-              // const body = JSON.stringify(newUser);
-              // const res = await axios.post('/api/users', body);
-              // console.log(res.data);
-              console.log(newUser);
+              register({ name, email, password });
+
               setTimeout(() => {
                 setSubmitting(false);
-              }, 400);
+              }, 1000);
             } catch (err) {
               console.error(err.response.data);
             }
@@ -104,6 +95,7 @@ const Register = props => {
   );
 };
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
