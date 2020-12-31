@@ -1,11 +1,18 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../redux/user/user.actions';
 
 import './Register.scss';
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <section className="container">
       <h1 className="large text-primary">Sign In</h1>
@@ -14,54 +21,21 @@ const Login = () => {
       </p>
       <Formik
         initialValues={{ email: '', password: '' }}
-        validate={values => {
-          const errors = {};
-
-          if (!values.email) {
-            errors.email = 'Required';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Invalid email address';
-          }
-
-          return errors;
-        }}
-        onSubmit={async (values, { setSubmitting }) => {
-          const { name, email, password, confirm } = values;
-          const newUser = {
-            name,
-            email,
-            password
-          };
-          if (password !== confirm) {
-            setSubmitting(true);
-            console.log('Passwords dont match');
-            setTimeout(() => {
-              setSubmitting(false);
-            }, 9100);
-          } else {
-            try {
-              setSubmitting(true);
-              // const body = JSON.stringify(newUser);
-              // const res = await axios.post('/api/users', body);
-              // console.log(res.data);
-              console.log(newUser);
-              setTimeout(() => {
-                setSubmitting(false);
-              }, 400);
-            } catch (err) {
-              console.error(err.response.data);
-            }
-          }
+        onSubmit={(values, { setSubmitting }) => {
+          const { email, password } = values;
+          console.log(values, email, password);
+          login(email, password);
+          setTimeout(() => {
+            setSubmitting(false);
+          }, 500);
         }}
       >
-        {({ values, errors, touched, isSubmitting }) => (
+        {({ isSubmitting }) => (
           <Form className="form">
             <div className="form-group">
               <Field type="email" placeholder="email" name="email" required />
             </div>
-            {errors.email && touched.email && errors.email}
+
             <div className="form-group">
               <Field
                 type="password"
@@ -71,7 +45,7 @@ const Login = () => {
                 required
               />
             </div>
-            {errors.password && touched.password && errors.password}
+
             <button
               className="btn btn-primary"
               type="submit"
@@ -90,4 +64,13 @@ const Login = () => {
   );
 };
 
-export default Login;
+login.PropTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.user.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);

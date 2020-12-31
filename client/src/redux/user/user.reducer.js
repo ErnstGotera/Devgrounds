@@ -2,7 +2,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   AUTH_ERROR,
-  USER_LOADED
+  USER_LOADED,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL
 } from './user.types';
 
 const initialState = {
@@ -20,7 +22,13 @@ export const userReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS:
       localStorage.setItem(payload.token);
       return { ...state, ...payload, isAuthenticated: false, loading: false };
+    case LOGIN_SUCCESS:
+      localStorage.setItem(payload.token);
+      return { ...state, ...payload, isAuthenticated: false, loading: false };
     case REGISTER_FAIL:
+      localStorage.removeItem('token');
+      return { ...state, token: null, isAuthenticated: false, loading: false };
+    case LOGIN_FAIL:
       localStorage.removeItem('token');
       return { ...state, token: null, isAuthenticated: false, loading: false };
     case AUTH_ERROR:
