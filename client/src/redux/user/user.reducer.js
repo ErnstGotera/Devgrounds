@@ -4,7 +4,8 @@ import {
   AUTH_ERROR,
   USER_LOADED,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from './user.types';
 
 const initialState = {
@@ -32,8 +33,14 @@ export const userReducer = (state = initialState, action) => {
       localStorage.removeItem('token');
       return { ...state, token: null, isAuthenticated: false, loading: false };
     case AUTH_ERROR:
-      localStorage.removeItem('token');
-      return { ...state, isAuthenticated: false, token: null, loading: false };
+    case LOGOUT:
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null
+      };
     default:
       return state;
   }
