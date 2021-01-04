@@ -3,8 +3,8 @@ import { FaUser } from 'react-icons/fa';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
-import { setAlert } from '../../redux/alert/alert.actions';
-import { register } from '../../redux/user/user.actions';
+import { setAlert } from '../../redux/actions/alert';
+import { register } from '../../redux/actions/auth';
 import PropTypes from 'prop-types';
 
 import './Register.scss';
@@ -20,47 +20,38 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <FaUser className="icon" /> Create Your Account
       </p>
       <Formik
-        initialValues={{ name: '', email: '', password: '', confirm: '' }}
-        validate={values => {
-          const errors = {};
-
-          if (!values.email) {
-            errors.email = 'Required';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Invalid email address';
-          }
-
-          return errors;
-        }}
+        initialValues={{ name: '', emailCase: '', password: '', confirm: '' }}
         onSubmit={async (values, { setSubmitting }) => {
-          const { name, email, password, confirm } = values;
+          const { name, emailCase, password, confirm } = values;
+          const email = emailCase.toLowerCase();
 
           if (password !== confirm) {
             setAlert('Passwords do not match', 'danger');
           } else {
             try {
-              setSubmitting(true);
               register({ name, email, password });
 
               setTimeout(() => {
                 setSubmitting(false);
               }, 1000);
             } catch (err) {
-              console.error(err.response.data);
+              console.error(err);
             }
           }
         }}
       >
-        {({ values, isSubmitting }) => (
+        {({ isSubmitting }) => (
           <Form className="form">
-            <pre>{JSON.stringify(values, null, 2)}</pre>;
             <div className="form-group">
               <Field type="text" placeholder="Name" name="name" required />
             </div>
             <div className="form-group">
-              <Field type="email" placeholder="email" name="email" required />
+              <Field
+                type="email"
+                placeholder="Email"
+                name="emailCase"
+                required
+              />
             </div>
             <div className="form-group">
               <Field
@@ -104,7 +95,7 @@ Register.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { setAlert, register })(Register);

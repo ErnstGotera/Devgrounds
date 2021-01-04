@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../../redux/user/user.actions';
+import { login } from '../../redux/actions/auth';
 
 import './Register.scss';
 
@@ -23,8 +23,7 @@ const Login = ({ login, isAuthenticated }) => {
         initialValues={{ email: '', password: '' }}
         onSubmit={(values, { setSubmitting }) => {
           const { email, password } = values;
-          console.log(values, email, password);
-          login(email, password);
+          login(email.toLowerCase(), password);
           setTimeout(() => {
             setSubmitting(false);
           }, 500);
@@ -64,13 +63,13 @@ const Login = ({ login, isAuthenticated }) => {
   );
 };
 
-login.PropTypes = {
+Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { login })(Login);

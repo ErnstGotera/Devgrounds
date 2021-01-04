@@ -2,11 +2,11 @@ import React from 'react';
 import { FaCode, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from 'react';
+import { logout } from '../redux/actions/auth';
 import PropTypes from 'prop-types';
 
 import './Navbar.scss';
-const Navbar = ({ user: { isAuthenticated }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const authLinks = (
     <ul>
       <li>
@@ -58,11 +58,11 @@ const Navbar = ({ user: { isAuthenticated }, logout }) => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);

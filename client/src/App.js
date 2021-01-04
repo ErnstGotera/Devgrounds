@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Alert from './components/Alert';
 import HomePage from './pages/HomePage/HomePage';
-import Register from './pages/Auth/Register';
-import Login from './pages/Auth/Login';
+import Routes from './components/routing/Routes';
 import setAuthToken from './utils/setAuthToken';
 import store from './redux/store';
-import { loadUser } from './redux/user/user.actions';
+import { loadUser } from './redux/actions/auth';
 import './App.css';
 
 if (localStorage.token) {
@@ -23,14 +21,9 @@ const App = () => {
   return (
     <>
       <Navbar />
-
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <section className="container">
-          <Alert />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-        </section>
+        <Route component={Routes} />
       </Switch>
       <Footer />
     </>
