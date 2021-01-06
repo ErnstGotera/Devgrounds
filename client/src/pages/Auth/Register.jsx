@@ -20,10 +20,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <FaUser className="icon" /> Create Your Account
       </p>
       <Formik
-        initialValues={{ name: '', emailCase: '', password: '', confirm: '' }}
+        initialValues={{ name: '', email: '', password: '', confirm: '' }}
         onSubmit={async (values, { setSubmitting }) => {
-          const { name, emailCase, password, confirm } = values;
-          const email = emailCase.toLowerCase();
+          const { name, email, password, confirm } = values;
 
           if (password !== confirm) {
             setAlert('Passwords do not match', 'danger');
@@ -46,12 +45,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               <Field type="text" placeholder="Name" name="name" required />
             </div>
             <div className="form-group">
-              <Field
-                type="email"
-                placeholder="Email"
-                name="emailCase"
-                required
-              />
+              <Field type="email" placeholder="Email" name="email" required />
             </div>
             <div className="form-group">
               <Field

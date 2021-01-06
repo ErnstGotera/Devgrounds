@@ -2,7 +2,7 @@ import React from 'react';
 import { FaCode, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../redux/actions/auth';
+import { logout } from '../../redux/actions/auth';
 import PropTypes from 'prop-types';
 
 import './Navbar.scss';
@@ -17,13 +17,13 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       </li>
       <li>
         <Link to="/dashboard">
-          <FaUser />
+          <FaUser className="navbar__icon" />
           <span className="hide-sm">Dashboard</span>
         </Link>
       </li>
       <li>
         <a onClick={logout} href="#!">
-          <FaSignOutAlt />
+          <FaSignOutAlt className="navbar__icon" />
           <span className="hide-sm">Logout</span>
         </a>
       </li>
