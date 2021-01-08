@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserCircle, FaBlackTie, FaGraduationCap } from 'react-icons';
+import { FaUserCircle, FaBlackTie, FaGraduationCap } from 'react-icons/fa';
 
 const DashboardActions = () => {
   return (

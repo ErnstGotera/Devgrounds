@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserMinus } from 'react-icons/fa';
 import { connect } from 'react-redux';
+import DashboardActions from './DashboardActions';
+import Experience from './Experience';
+import Education from './Education';
+
 import { getCurrentProfile, deleteAccount } from '../../redux/actions/profile';
 
 import PropTypes from 'prop-types';
@@ -24,9 +28,9 @@ const Dashboard = ({
       </p>
       {profile !== null ? (
         <>
-          {/* <DashboardActions />
+          <DashboardActions />
           <Experience experience={profile.experience} />
-          <Education education={profile.education} /> */}
+          <Education education={profile.education} />
 
           <div className="my-2">
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
