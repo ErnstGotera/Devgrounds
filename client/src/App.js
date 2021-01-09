@@ -7,15 +7,18 @@ import Routes from './components/routing/Routes';
 import setAuthToken from './utils/setAuthToken';
 import store from './redux/store';
 import { loadUser } from './redux/actions/auth';
+import { LOGOUT } from './redux/actions/types';
 import './App.css';
-
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
 
 const App = () => {
   useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
     store.dispatch(loadUser());
+    window.addEventListener('storage', () => {
+      if (!localStorage.token) store.dispatch({ type: LOGOUT });
+    });
   }, []);
 
   return (
