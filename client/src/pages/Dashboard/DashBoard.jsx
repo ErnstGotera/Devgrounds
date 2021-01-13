@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserMinus } from 'react-icons/fa';
+import { FaUserMinus, FaUser } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
@@ -24,7 +24,8 @@ const Dashboard = ({
     <>
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Welcome {user && user.name}
+        <FaUser />
+        Welcome {user && user.name}
       </p>
       {profile !== null ? (
         <>
