@@ -8,6 +8,8 @@ import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 import { getPost } from '../../redux/actions/post';
 
+import './Post.scss';
+
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getPost(match.params.id);
