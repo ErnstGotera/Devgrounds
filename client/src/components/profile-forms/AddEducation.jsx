@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../redux/actions/profile';
+import { FaCodeBranch } from 'react-icons/fa';
 
 const AddEducation = ({ addEducation, history }) => {
   const [formData, setFormData] = useState({
@@ -32,8 +33,7 @@ const AddEducation = ({ addEducation, history }) => {
     <Fragment>
       <h1 className="large text-primary">Add Your Education</h1>
       <p className="lead">
-        <i className="fas fa-code-branch" /> Add any school or bootcamp that you
-        have attended
+        <FaCodeBranch /> Add any school or bootcamp that you have attended
       </p>
       <small>* = required field</small>
       <form

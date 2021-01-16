@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../redux/actions/profile';
+import { FaUser } from 'react-icons/fa';
 
 const initialState = {
   company: '',
@@ -72,7 +73,7 @@ const ProfileForm = ({
     <Fragment>
       <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Add some changes to your profile
+        <FaUser /> Add some changes to your profile
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>

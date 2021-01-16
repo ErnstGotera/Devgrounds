@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import formatDate from '../../utils/formatDate';
 import { deleteComment } from '../../redux/actions/post';
+import { FaTimes } from 'react-icons/fa';
 
 const CommentItem = ({
   postId,
@@ -27,7 +28,7 @@ const CommentItem = ({
           type="button"
           className="btn btn-danger"
         >
-          <i className="fas fa-times" />
+          <FaTimes />
         </button>
       )}
     </div>
