@@ -6,13 +6,13 @@ const DashboardActions = () => {
   return (
     <div className="dash-buttons">
       <Link to="/edit-profile" className="btn btn-light">
-        <FaUserCircle /> Edit Profile
+        <FaUserCircle className="icon" /> Edit Profile
       </Link>
       <Link to="/add-experience" className="btn btn-light">
-        <FaBlackTie /> Add Experience
+        <FaBlackTie className="icon" /> Add Experience
       </Link>
       <Link to="/add-education" className="btn btn-light">
-        <FaGraduationCap /> Add Education
+        <FaGraduationCap className="icon" /> Add Education
       </Link>
     </div>
   );

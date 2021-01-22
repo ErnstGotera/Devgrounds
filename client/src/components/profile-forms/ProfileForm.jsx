@@ -73,7 +73,7 @@ const ProfileForm = ({
     <Fragment>
       <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
-        <FaUser /> Add some changes to your profile
+        <FaUser className="icon" /> Add some changes to your profile
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>

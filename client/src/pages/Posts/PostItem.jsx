@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FaThumbsUp, FaThumbsDown, FaTimes } from 'react-icons/fa';
 import formatDate from '../../utils/formatDate';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../redux/actions/post';
@@ -31,7 +32,7 @@ const PostItem = ({
             type="button"
             className="btn btn-light"
           >
-            <i className="fas fa-thumbs-up" />{' '}
+            <FaThumbsUp />{' '}
             <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
           </button>
           <button
@@ -39,7 +40,7 @@ const PostItem = ({
             type="button"
             className="btn btn-light"
           >
-            <i className="fas fa-thumbs-down" />
+            <FaThumbsDown />
           </button>
           <Link to={`/posts/${_id}`} className="btn btn-primary">
             Discussion{' '}
@@ -53,7 +54,7 @@ const PostItem = ({
               type="button"
               className="btn btn-danger"
             >
-              <i className="fas fa-times" />
+              <FaTimes />
             </button>
           )}
         </Fragment>

@@ -60,6 +60,7 @@ img {
 .lead {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  display: flex;
 }
 
 .text-center {
@@ -68,9 +69,11 @@ img {
 
 .text-primary {
   color: var(--primary-color);
+  display: flex;
 }
 
 .text-dark {
+  display: flex;
   color: var(--dark-color);
 }
 
@@ -246,4 +249,9 @@ button:disabled {
 
 .table th {
   background: var(--light-color);
+}
+
+.icon {
+  margin: 0 4px;
+  align-self: center;
 }

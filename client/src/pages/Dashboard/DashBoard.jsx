@@ -24,7 +24,7 @@ const Dashboard = ({
     <>
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
-        <FaUser />
+        <FaUser className="icon" />
         Welcome {user && user.name}
       </p>
       {profile !== null ? (
@@ -35,7 +35,7 @@ const Dashboard = ({
 
           <div className="my-2">
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
-              <FaUserMinus /> Delete My Account
+              <FaUserMinus className="icon" /> Delete My Account
             </button>
           </div>
         </>
