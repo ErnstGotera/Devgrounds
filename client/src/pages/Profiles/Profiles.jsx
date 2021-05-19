@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../../components/layout/Spinner';
@@ -7,9 +7,14 @@ import './Profiles.scss';
 import { getProfiles } from '../../redux/actions/profile';
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
+  const [search, setSearch] = useState('');
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);
+
+  const filteredProfiles = profiles.filter(profile =>
+    profile.user.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <Fragment>
@@ -22,9 +27,16 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
             <i className="fab fa-connectdevelop" /> Browse and connect with
             developers
           </p>
+
+          <input
+            onChange={e => setSearch(e.target.value)}
+            type="search"
+            placeholder="Search developers"
+            className="search-bar"
+          />
           <div className="profiles">
-            {profiles.length > 0 ? (
-              profiles.map(profile => (
+            {filteredProfiles.length > 0 ? (
+              filteredProfiles.map(profile => (
                 <ProfileItem key={profile._id} profile={profile} />
               ))
             ) : (

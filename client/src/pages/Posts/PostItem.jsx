@@ -5,6 +5,7 @@ import { FaThumbsUp, FaThumbsDown, FaTimes } from 'react-icons/fa';
 import formatDate from '../../utils/formatDate';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../redux/actions/post';
+import ReactQuill from 'react-quill';
 
 const PostItem = ({
   addLike,
@@ -22,7 +23,12 @@ const PostItem = ({
       </Link>
     </div>
     <div>
-      <p className="my-1">{text}</p>
+      <ReactQuill
+        modules={{ toolbar: false }}
+        className="my-1 quill-post"
+        readOnly={true}
+        value={text}
+      />
       <p className="post-date">Posted on {formatDate(date)}</p>
 
       {showActions && (

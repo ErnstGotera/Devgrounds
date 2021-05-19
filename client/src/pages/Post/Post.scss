@@ -32,6 +32,14 @@
   margin-bottom: 0.5rem;
 }
 
+.quill-post > div {
+  border: none !important;
+}
+
+.ql-disabled > div {
+  padding: 0 !important;
+}
+
 @media (max-width: 700px) {
   .post {
     grid-template-columns: 1fr;
