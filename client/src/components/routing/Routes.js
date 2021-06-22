@@ -12,6 +12,8 @@ import AddEducation from '../profile-forms/AddEducation';
 import PrivateRoute from './PrivateRoute';
 import Posts from '../../pages/Posts/Posts';
 import Post from '../../pages/Post/Post';
+import Events from '../../pages/Events/Events';
+import Event from '../../pages/Event/Event';
 import NotFound from '../layout/NotFound';
 
 const Routes = () => {
@@ -30,6 +32,8 @@ const Routes = () => {
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
+        <PrivateRoute exact path="/events" component={Events} />
+        <PrivateRoute exact path="/events/:id" component={Event} />
         <Route component={NotFound} />
       </Switch>
     </section>
