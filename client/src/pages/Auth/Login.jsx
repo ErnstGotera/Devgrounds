@@ -20,7 +20,7 @@ const Login = ({ login, isAuthenticated }) => {
     login(email.toLowerCase(), password);
     setTimeout(() => {
       setSubmitting(false);
-    }, 400);
+    }, 900);
   };
   return (
     <section className="container">

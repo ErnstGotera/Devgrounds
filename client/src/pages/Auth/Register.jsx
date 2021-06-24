@@ -26,7 +26,7 @@ const Register = ({ setAlert, registerUser, isAuthenticated }) => {
         registerUser({ name, email, password });
         setTimeout(() => {
           setSubmitting(false);
-        }, 500);
+        }, 1000);
       } catch (err) {
         console.error(err);
       }
