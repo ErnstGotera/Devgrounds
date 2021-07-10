@@ -29,7 +29,7 @@ const PostItem = ({
         readOnly={true}
         value={text}
       />
-      <p className="post-date">Posted on {formatDate(date)}</p>
+      <p className="small-date">Posted on {formatDate(date)}</p>
 
       {showActions && (
         <Fragment>

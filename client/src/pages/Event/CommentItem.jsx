@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import formatDate from '../../utils/formatDate';
-import { deleteComment } from '../../redux/actions/post';
+import { deleteComment } from '../../redux/actions/event';
 import { FaTimes } from 'react-icons/fa';
 
 const CommentItem = ({
