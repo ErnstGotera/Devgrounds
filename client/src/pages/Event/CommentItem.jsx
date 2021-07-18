@@ -7,7 +7,7 @@ import { deleteComment } from '../../redux/actions/event';
 import { FaTimes } from 'react-icons/fa';
 
 const CommentItem = ({
-  postId,
+  eventId,
   comment: { _id, text, name, avatar, user, date },
   auth,
   deleteComment
@@ -24,7 +24,7 @@ const CommentItem = ({
       <p className="small-date">Posted on {formatDate(date)}</p>
       {!auth.loading && user === auth.user._id && (
         <button
-          onClick={() => deleteComment(postId, _id)}
+          onClick={() => deleteComment(eventId, _id)}
           type="button"
           className="btn btn-danger"
         >
@@ -36,7 +36,7 @@ const CommentItem = ({
 );
 
 CommentItem.propTypes = {
-  postId: PropTypes.string.isRequired,
+  eventId: PropTypes.string.isRequired,
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   deleteComment: PropTypes.func.isRequired

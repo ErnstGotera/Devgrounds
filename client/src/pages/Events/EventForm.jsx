@@ -9,7 +9,6 @@ const EventForm = ({ addEvent }) => {
 
   const onSubmit = data => {
     const { title, text, start, end } = data;
-    console.log(start, end);
     addEvent({ title, text, start, end });
   };
 

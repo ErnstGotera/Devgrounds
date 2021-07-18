@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addComment } from '../../redux/actions/event';
 
-const CommentForm = ({ postId, addComment }) => {
+const CommentForm = ({ eventId, addComment }) => {
   const [text, setText] = useState('');
 
   return (
@@ -15,7 +15,7 @@ const CommentForm = ({ postId, addComment }) => {
         className="form my-1"
         onSubmit={e => {
           e.preventDefault();
-          addComment(postId, { text });
+          addComment(eventId, { text });
           setText('');
         }}
       >

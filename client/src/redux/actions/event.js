@@ -48,7 +48,7 @@ export const addAttend = id => async dispatch => {
   }
 };
 
-// Remove like
+// Remove attend
 export const removeAttend = id => async dispatch => {
   try {
     const res = await api.put(`/events/unattend/${id}`);

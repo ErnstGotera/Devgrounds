@@ -113,12 +113,14 @@ router.put('/attend/:id', auth, checkObjectId('id'), async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
 
-    // Check if the event has already been liked
-    if (event.attend.some(attend => attend.user.toString() === req.user.id)) {
+    // Check if the event has already been attended
+    if (
+      event.attendees.some(attend => attend.user.toString() === req.user.id)
+    ) {
       return res.status(400).json({ msg: 'Event already attended' });
     }
-
-    event.attend.unshift({ user: req.user.id });
+    console.log(event.attendees);
+    event.attendees.unshift({ user: req.user.id });
 
     await event.save();
 
@@ -129,26 +131,28 @@ router.put('/attend/:id', auth, checkObjectId('id'), async (req, res) => {
   }
 });
 
-// @route    PUT api/events/unlike/:id
-// @desc     Unlike a post
+// @route    PUT api/events/unattend/:id
+// @desc     Unattend an event
 // @access   Private
 router.put('/unattend/:id', auth, checkObjectId('id'), async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const event = await Event.findById(req.params.id);
 
-    // Check if the post has not yet been liked
-    if (!post.likes.some(like => like.user.toString() === req.user.id)) {
-      return res.status(400).json({ msg: 'Post has not yet been liked' });
+    // Check if the event has not yet been attended
+    if (
+      !event.attendees.some(attend => attend.user.toString() === req.user.id)
+    ) {
+      return res.status(400).json({ msg: 'Event has not yet been attended' });
     }
 
-    // remove the like
-    post.likes = post.likes.filter(
+    // remove the attend
+    event.attendees = event.attendees.filter(
       ({ user }) => user.toString() !== req.user.id
     );
 
-    await post.save();
+    await event.save();
 
-    return res.json(post.likes);
+    return res.json(event.attendees);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

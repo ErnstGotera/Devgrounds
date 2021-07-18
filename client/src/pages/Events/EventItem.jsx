@@ -1,13 +1,18 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaCheck } from 'react-icons/fa';
 import formatDate from '../../utils/formatDate';
 import { connect } from 'react-redux';
-import { addAttend, deleteEvent } from '../../redux/actions/event';
+import {
+  addAttend,
+  removeAttend,
+  deleteEvent
+} from '../../redux/actions/event';
 
 const EventItem = ({
   addAttend,
+  removeAttend,
   deleteEvent,
   auth,
   event: {
@@ -45,7 +50,9 @@ const EventItem = ({
             type="button"
             className="btn btn-light"
           >
+            <FaCheck />{' '}
             <span>
+              Attend
               {attendees.length > 0 && <span>{attendees.length}</span>}
             </span>
           </button>
@@ -87,4 +94,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { addAttend, deleteEvent })(EventItem);
+export default connect(mapStateToProps, {
+  addAttend,
+  removeAttend,
+  deleteEvent
+})(EventItem);
