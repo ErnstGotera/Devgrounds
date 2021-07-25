@@ -29,7 +29,7 @@ export default function SignIn() {
           onClick={e => (!room ? e.preventDefault() : null)}
           to={`/chat/${room}`}
         >
-          <button className="btn" type="submit">
+          <button disabled={true} className="btn" type="submit">
             Join
           </button>
         </Link>

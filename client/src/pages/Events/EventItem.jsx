@@ -52,8 +52,9 @@ const EventItem = ({
           >
             <FaCheck />{' '}
             <span>
-              Attend
-              {attendees.length > 0 && <span>{attendees.length}</span>}
+              {attendees.length > 0
+                ? `Attendees: ${attendees.length}`
+                : 'attend'}
             </span>
           </button>
           <Link to={`/events/${_id}`} className="btn btn-primary">
